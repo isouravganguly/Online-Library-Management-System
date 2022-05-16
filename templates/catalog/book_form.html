@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <input class="button button--flex" type="submit" value="Submit"/>
+
+    </form>
+{% endblock %}

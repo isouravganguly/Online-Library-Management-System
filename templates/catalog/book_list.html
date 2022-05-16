@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <!-- ====================== SEARCH ======================= -->
+    <center> <form class="form" id="searchform" action="{% url 'search_b' %}" method="get">
+      <div class="search__form-group">
+      <input type="text" class="search__input"  placeholder="Search" name="q" type="text"/>
+      <button type="button"  class="button--flex search-button" onclick="searchform.submit()"><i class="ri-search-line search-icon"></i></button>
+          </div>
+  </form>
+     </center>
+
+     <!--==================== PRODUCTS ====================-->
+     <section class="book section container" id="books">
+
+    {% if book_list %}
+
+    <div class="book__container grid">
+      {% for book in book_list %}
+      <a class="book__title" href="{{ book.get_absolute_url}}">
+      <article class="book__card" id="book-card">
+
+        {% if book.small_pic %}
+        <img src="{{book.small_pic}}" alt="sample_image" class="book__img">
+        {% else %}
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png" alt="sample_image" class="book__img">
+        {% endif %}
+        <h3 class="book__title">{{ book.title }}</h3>
+        <span class="book__price">{{book.author}}</span>
+    </article>
+  </a>
+
+      {% endfor %}
+    </div>
+
+
+    {% else %}
+      <p class=" bg bg-white">There are no books.</p>
+    {% endif %}  
+
+{% endblock %}

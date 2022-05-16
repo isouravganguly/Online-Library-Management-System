@@ -1,0 +1,11 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container container__transfer">
+    <div class="transfer__buttons">
+        <a href="{% url 'issue' %}" class="issue__button button button--flex"> <i class="uil uil-plus-circle issue-icon"></i> Issue </a>
+        <a href="{% url 'return' %}" class="return__button button button--flex"> <i class="uil uil-arrow-from-top return-icon"></i> Return </a>
+    </div>
+</div>
+
+{% endblock %}

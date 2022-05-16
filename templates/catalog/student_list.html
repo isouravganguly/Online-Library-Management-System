@@ -1,0 +1,35 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+   <center> <form class="form" id="searchform" action="{% url 'search_s' %}" method="get">
+    <div class="search__form-group">
+    <input type="text" class="search__input"  placeholder="Search" name="q" type="text"/>
+    <button type="button"  class="button--flex search-button" onclick="searchform.submit()"><i class="ri-search-line search-icon"></i></button>
+        </div>
+</form>
+   </center>
+    <div class="students">
+        <ul class="lists">
+        {% for s in students %}
+        <a class="student__tab" href="{% url 'student_detail' pk=s.id %}">
+                <li class="card">
+                        <div class="student__tab-details">
+                            {% if s.pic %}
+                            <img src="{{ s.pic.url }}" alt="image" class="student__img">
+                            {% else %}
+                            <img src="https://th.bing.com/th/id/R.3931f1eaea49792060253fac99b81753?rik=SEjP9EyD1A92mg&riu=http%3a%2f%2fwww.masscue.org%2fwp-content%2fuploads%2f2017%2f03%2fmale-no-image.jpg&ehk=OcupScJWy7EgpDc8zhSZT49oOrY%2fGKZWa96bUAUNYGw%3d&risl=&pid=ImgRaw&r=0" alt="image" class="student__img">
+                            {% endif %}
+                            <div class="student__tab-names">
+                                <div class="student__tab-title">
+                                    {{ s.name }}
+                                </div>
+                                <span class="student__roll">{{s.roll_no}}</span>
+                            </div>
+                        </div>
+                        
+            </li>
+        </a>
+            
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock %}

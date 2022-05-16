@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--=============== FAVICON ===============-->
+        <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+        <!-- ===============UNICONS================ -->
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+        <!--=============== REMIX ICONS ===============-->
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+        <!--=============== CSS ===============-->
+        <!-- <link rel="stylesheet" href="assets/css/styles.css"> -->
+        <!-- Add additional CSS in static file -->
+    {% load static %}
+    {% block style %}
+        {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+        <title>BUIE Library</title>
+    </head>
+    <body>
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav__logo">
+                    <i class="ri-leaf-line nav__logo-icon"></i> BUIE Library
+                </a>
+
+                <div class="nav__menu" id="nav-menu">
+                    {% if user.is_authenticated %}
+                    <div class="profile__box">
+                        <img src="{{request.user.Student.pic}}" alt="sample_image" class="profile__box-img">
+                        <div class="profile__box-name">
+                            {{request.user.Student.name}} 
+                        </div>
+                    </div>
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="{% url 'book_student' %}" class="nav__link active-link">Issued Books</a>
+                        </li>
+                        {% else %}
+                        <li class="nav__item">
+                                <a class="nav__link button button--flex login-btn" href="{% url 'login' %}">Login</a>                           
+                        </li>
+                        {% endif %}
+
+                        <li class="nav__item">
+                            <a href="{% url 'books' %}" class="nav__link">Books</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{% url 'feed' %}" class="nav__link">Feeds</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#faqs" class="nav__link">FAQs</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{% url 'contact' %}" class="nav__link">Contact Us</a>
+                        </li>
+
+                        {% if user.is_authenticated %}
+                        <li class="nav__item">
+                            <a href="{% url 'password_reset' %}" class="nav__link">Reset Password</a>
+                        </li>
+                        
+                        <!-- ---------------- SUPER USER ACCESS --------------------- -->
+                        {% if user.is_superuser %}
+                        <li class="nav__item">
+                            <a href="{% url 'student_create' %}" class="nav__link">Add Students</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{% url 'book_create' %}" class="nav__link">Add Books</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{% url 'student_list' %}" class="nav__link">Students</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="{% url 'transfers' %}" class="nav__link">Transfers</a>
+                        </li>
+                        {% endif %}
+
+                        <li class="nav__item">
+                            <a href="{% url 'logout' %}" class="nav__link button button--flex logout-btn">Logout</a>
+                        </li>
+                        <li class="nav__item">
+<br>                        </li>
+                        {% endif %}
+
+
+                        <!-- ---------==============------------------=====================----------------- -->
+
+
+                    </ul>
+
+                    <div class="nav__close" id="nav-close">
+                        <i class="ri-close-line"></i>
+                    </div>
+                </div>
+
+                <div class="nav__btns">
+                    <!-- Theme change button -->
+                    <i class="ri-moon-line change-theme" id="theme-button"></i>
+
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class="ri-menu-line"></i>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+
+<!-- -----------=================== Other Body and Web-Pages =================------------------ -->
+
+        {% block content %}{% endblock %}
+
+<!-- -----------=================== JAVASCRIPT =================------------------ -->
+        
+<!-- ================ MAIN JS ================ -->
+{% load static %}
+        <script src="{% static 'js/main.js' %}"></script>
+
+<!-- ================= Scroll popup with JS ==================== -->
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="index.js"></script>
+
+        </html>

@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img class="logo" src="https://www.buie.ac.in/templates/images/logo.png"
+                         id="icon" alt="User Icon"/>
+
+                </div>
+
+                <!-- Login Form -->
+                {{ form|crispy }}
+                <button type="submit" class="button button--flex">submit</button>
+
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+                </div>
+
+
+            </div>
+
+
+            {#<input type="submit" value="login" />#}
+            {#<input type="hidden" name="next" value="{{ next }}" />#}
+    </form>
+
+    {# Assumes you setup the password_reset view in your URLconf #}
+
+
+    </div>
+{% endblock %}

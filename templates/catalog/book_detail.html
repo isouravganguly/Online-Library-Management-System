@@ -1,0 +1,43 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <div class="container bg bg-white">
+
+    <div class="container-fliud">
+    <div class="wrapper row">
+    <div class="preview col-6">
+
+        <div class="preview-pic tab-content">
+            <div class="book__details-div-img" id="pic-1"><img class="book__details-img"
+                    src="{{ book.large_pic }}" height="500" width="400"/>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="details col-6">
+        <h1>{{ book.title }}</h1>
+
+        <p><strong>Author: </strong>{{ book.author }}</p>
+        <p><strong>Summary: </strong> {{summary}}</p>
+        <p><strong>ISBN: </strong> {{ book.isbn }}</p>
+        <p><strong>Language: </strong> {{ book.language }}</p>
+        <p><strong>Genre: </strong>
+            {% for genre in book.genre.all %}{{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+        <div style="margin-left:20px;margin-top:20px">
+            <h4>Copies</h4>
+            {% if user.is_superuser %}
+                <a class="btn btn-danger" href="{% url 'book_delete' pk=book.id %}">DELETE</a>
+                <a class="btn btn-success" href="{% url 'book_update' pk=book.id %}">Update</a>
+
+            {% endif %}
+            {% if book.available_copies %}
+                <br>
+                no of avialable copies={{ book.available_copies }}<br>
+                <a class="btn btn-primary" href="{% url 'request_issue' pk=book.id %}">Issue</a>
+            {% endif %}      </div>
+
+    </div>
+
+    
+{% endblock %}
