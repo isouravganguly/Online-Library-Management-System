@@ -18,19 +18,23 @@
 
                 <!-- Login Form -->
                 {{ form|crispy }}
-                <button type="submit" class="button button--flex">submit</button>
+                
+                <center><button type="submit" class="button button--flex"><strong>Submit</strong></button>
 
                 <!-- Remind Passowrd -->
+                <br><br><br>
+                
                 <div id="formFooter">
-                    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+                    <p><a href="{% url 'password_reset' %}">Lost Password?</a></p>
                 </div>
-
+            </center>
 
             </div>
 
 
             {#<input type="submit" value="login" />#}
             {#<input type="hidden" name="next" value="{{ next }}" />#}
+
     </form>
 
     {# Assumes you setup the password_reset view in your URLconf #}

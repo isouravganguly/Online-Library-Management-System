@@ -7,15 +7,15 @@
 
   /*========== Colors ==========*/
   /*Color mode HSL(hue, saturation, lightness)*/
-  --hue: 152;
-  --first-color: hsl(var(--hue), 24%, 32%);
-  --first-color-alt: hsl(var(--hue), 24%, 28%);
-  --first-color-light: hsl(var(--hue), 24%, 66%);
-  --first-color-lighten: hsl(var(--hue), 24%, 92%);
+  --hue: 221;
+  --first-color: hsl(var(--hue), 90%, 55%);
+  --first-color-alt: hsl(var(--hue), 90%, 50%);
+  --first-color-light: hsl(var(--hue), 90%, 70%);
+  --first-color-lighten: hsl(var(--hue), 90%, 92%);
   --title-color: hsl(var(--hue), 4%, 15%);
   --text-color: hsl(var(--hue), 4%, 35%);
   --text-color-light: hsl(var(--hue), 4%, 55%);
-  --body-color: hsl(var(--hue), 60%, 99%);
+  --body-color: hsl(var(--hue), 90%, 99%);
   --container-color: #FFF;
 
   /*========== Font and typography ==========*/
@@ -42,9 +42,10 @@
   --mb-2: 2rem;
   --mb-2-5: 2.5rem;
 
-  /*========== z index ==========*/
-  --z-tooltip: 10;
-  --z-fixed: 100;
+    /* ================== z index ===================== */
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
 }
 
 /* Responsive typography */
@@ -136,7 +137,9 @@ h1,h2,h3{
 }
 
 ul{
+  cursor: inherit;
   list-style: none;
+  list-style-type: none;  
 }
 
 a{
@@ -230,6 +233,89 @@ the website, in dark theme
   z-index: var(--z-fixed);
   transition: .4s; /*For animation dark mode*/
 }
+
+/* ------------============ TUTORIAL AT FIRST SCREEN ==============------------------- */
+.tutorial__modal{
+  cursor: inherit;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  z-index: var(--z-modal);
+  visibility: hidden;
+  opacity: 0;
+  transition: .3s;
+}
+
+.tutorial__modal-items-first{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--container-color);
+  border-radius: 2rem;
+  padding: 0.8rem;
+  margin: 0.2rem;
+
+}
+
+.tutorial__modal-logo{
+  width: 180px;
+  border-radius: 3rem;
+  margin-left: auto;
+  margin-right: auto ;
+  padding: 1rem;
+}
+
+.tutorial__modal-items{
+  margin: 2rem;
+  color: #FFF
+}
+
+.tutorial__modal-arrow-icon{
+  font-size: var(--big-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tutorial__modal-text{
+  font-weight: var(--font-semi-bold);
+}
+
+.tutorial__modal-next{
+  margin: 1rem;
+  background-color: var(--first-color);
+  color: #FFF;
+  font-size: var(--h2-font-size);
+  font-weight: var(--font-medium);
+  border-radius: 2rem;
+  border: 1px solid white;
+}
+
+.tutorial__explore{
+  display: block;
+  text-align: center;
+  margin: var(--mb-1-5) auto var(--mb-0-75) auto;
+}
+
+/* Active Modal */
+.active-modal{
+  opacity: 1;
+  visibility: visible;
+}
+
+.upper{
+  background-color: #FFF;
+  z-index: var(--z-modal);
+}
+
 
 
 /* =================== LOGIN / LOGOUT ======================== */
@@ -362,6 +448,19 @@ the website, in dark theme
     transition: .3s;
     z-index: var(--z-fixed);
     overflow: scroll;
+  }
+
+  /* ------------------ nav menu icons -------------------- */
+  .nav-icon{
+    font-weight: var(--font-medium);
+    color: var(--title-color);
+    font-size: 1rem;
+  }
+
+  .nav-icon:hover{
+    color: var(--first-color-alt);
+    font-size: 1.8rem;
+    transition: .3s;
   }
 
 .nav__close{

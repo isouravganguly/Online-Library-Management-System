@@ -1,5 +1,3 @@
-from asyncio.windows_events import NULL
-from operator import truediv
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import CharField

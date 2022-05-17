@@ -42,29 +42,46 @@ function scrollHeader(){
 window.addEventListener('scroll', scrollHeader)
 
 
-// ======================= Book-List =========================
-const modalViews = document.getElementById('project-modal'),
-    modalBtns = document.querySelectorAll('.product__card'),
-    modalCloses= document.querySelectorAll('.project__modal-close')
+// ==============================  TUTORIAL WINDOW START SCREEN  =====================================
+const modalViews = document.querySelectorAll('.tutorial__modal'),
+    modalBtns = document.querySelectorAll('.tutorial__modal-next')
+   var up = document.getElementById('nav-toggle-icon')
+    // modalCloses= document.querySelectorAll('.project__modal-close')
 
 let modal = function(modalClick){
-    modalViews.classList.add('active-modal')
+    modalViews[modalClick].classList.remove('active-modal')
+    modalViews[modalClick+1].classList.add('active-modal')
+
+    if(modalClick==0){
+    up.classList.add('upper')
+    }
+
+    if(modalClick==1){
+        navMenu.classList.add('show-menu')
+        up.classList.remove('upper')
+        up = document.getElementById('book-list')
+        up.classList.add('upper')
+        }
+    
+    if(modalClick==2){
+        up.classList.remove('upper')
+        up = document.getElementById('log-in')
+        up.classList.add('upper')
+        }
+    
+    if(modalClick==3){
+        navMenu.classList.remove('show-menu')
+        up.classList.remove('upper')
+            }
+    
 }
 
 modalBtns.forEach((modalBtn,i) => {
     modalBtn.addEventListener('click', () => {
-        modal()
+        modal(i)
+        console.log(i)
     })
 })
-
-modalCloses.forEach((modalClose) => {
-    modalClose.addEventListener('click', ()=> {
-        modalViews.forEach((modalView) => {
-            modalView.classList.remove('active-modal')
-        })
-    })
-})
-
 
 
 /*=============== DARK LIGHT THEME ===============*/ 

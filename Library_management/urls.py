@@ -26,7 +26,7 @@ from .feed import LatestEntriesFeed
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='books'),
+    path('', views.index, name='index'),
 
     path('books/', views.BookListView, name='books'),
     path('book/<int:pk>', views.BookDetailView, name='book-detail'),

@@ -1,10 +1,9 @@
-from asyncio.windows_events import NULL
 from email import message
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import*
 import json
-from openpyxl import load_workbook
+# from openpyxl import load_workbook
 # Python's built-in module for opening and reading URLs
 from urllib.request import urlopen
 from .models import *
@@ -17,8 +16,7 @@ from datetime import datetime
 
 # HOME PAGE
 def index(request):
-    
-    return redirect('/books')
+    return render(request, 'index.html')
 
 def contact(request):
     return render(request, 'catalog/contact.html')

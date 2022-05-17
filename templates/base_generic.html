@@ -34,9 +34,8 @@
                 <div class="nav__menu" id="nav-menu">
                     {% if user.is_authenticated %}
                     <div class="profile__box">
-                        <img src="{{request.user.Student.pic}}" alt="sample_image" class="profile__box-img">
                         <div class="profile__box-name">
-                            {{request.user.Student.name}} 
+                            {{request.user}} 
                         </div>
                     </div>
                     <ul class="nav__list">
@@ -45,47 +44,47 @@
                         </li>
                         {% else %}
                         <li class="nav__item">
-                                <a class="nav__link button button--flex login-btn" href="{% url 'login' %}">Login</a>                           
+                                <a id="log-in" class="nav__link button button--flex login-btn" href="{% url 'login' %}"> <strong> Login </strong></a>                           
                         </li>
                         {% endif %}
 
-                        <li class="nav__item">
-                            <a href="{% url 'books' %}" class="nav__link">Books</a>
+                        <li id="book-list" class="nav__item">
+                            <a href="{% url 'books' %}" class="nav__link"><i class="uil uil-books nav-icon"></i> Books</a>
                         </li>
                         <li class="nav__item">
-                            <a href="{% url 'feed' %}" class="nav__link">Feeds</a>
+                            <a href="{% url 'feed' %}" class="nav__link"><i class="uil uil-newspaper nav-icon"></i> Feeds</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#faqs" class="nav__link">FAQs</a>
+                            <a href="#faqs" class="nav__link"><i class="uil uil-question-circle nav-icon"></i> FAQs</a>
                         </li>
                         <li class="nav__item">
-                            <a href="{% url 'contact' %}" class="nav__link">Contact Us</a>
+                            <a href="{% url 'contact' %}" class="nav__link"><i class="uil uil-at nav-icon"></i> Contact Us</a>
                         </li>
 
                         {% if user.is_authenticated %}
                         <li class="nav__item">
-                            <a href="{% url 'password_reset' %}" class="nav__link">Reset Password</a>
+                            <a href="{% url 'password_reset' %}" class="nav__link"><i class="uil uil-unlock-alt nav-icon"></i> Reset Password</a>
                         </li>
                         
                         <!-- ---------------- SUPER USER ACCESS --------------------- -->
                         {% if user.is_superuser %}
                         <li class="nav__item">
-                            <a href="{% url 'student_create' %}" class="nav__link">Add Students</a>
+                            <a href="{% url 'student_create' %}" class="nav__link"><i class="uil uil-user-plus nav-icon"></i> Add Students</a>
                         </li>
                         <li class="nav__item">
-                            <a href="{% url 'book_create' %}" class="nav__link">Add Books</a>
+                            <a href="{% url 'book_create' %}" class="nav__link"><i class="uil uil-book-medical nav-icon"></i> Add Books</a>
                         </li>
                         <li class="nav__item">
-                            <a href="{% url 'student_list' %}" class="nav__link">Students</a>
+                            <a href="{% url 'student_list' %}" class="nav__link"><i class="uil uil-user-square nav-icon"></i> Students</a>
                         </li>
 
                         <li class="nav__item">
-                            <a href="{% url 'transfers' %}" class="nav__link">Transfers</a>
+                            <a href="{% url 'transfers' %}" class="nav__link"><i class="uil uil-exchange-alt nav-icon"></i> Transfers</a>
                         </li>
                         {% endif %}
 
                         <li class="nav__item">
-                            <a href="{% url 'logout' %}" class="nav__link button button--flex logout-btn">Logout</a>
+                            <a href="{% url 'logout' %}" class="nav__link button button--flex logout-btn"> <strong> Logout <i class="uil uil-sign-out-alt"></i></strong></a>
                         </li>
                         <li class="nav__item">
 <br>                        </li>
@@ -107,7 +106,7 @@
                     <i class="ri-moon-line change-theme" id="theme-button"></i>
 
                     <div class="nav__toggle" id="nav-toggle">
-                        <i class="ri-menu-line"></i>
+                        <i class="ri-menu-line" id="nav-toggle-icon"></i>
                     </div>
                 </div>
             </nav>

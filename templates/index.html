@@ -1,4 +1,97 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+
+<!-- ----------------------------------- TUTORIALS ----------------------------------------- -->
+
+<!-- ============================== TUTORIAL 0- ENTRY ============================= -->
+<div class="tutorial__modal active-modal">
+    <div class="tutorial__modal-items-first">
+        
+        <img src="https://media-exp1.licdn.com/dms/image/C4E0BAQEJZBo-jDYe3g/company-logo_200_200/0/1600522369072?e=2147483647&v=beta&t=Hd7aY6vYFTQaNkXWtFFHyRq_ILAQMjRRcPW6Igu2Ujo" alt="college_logo" class="tutorial__modal-logo">
+
+        <div class="section__title">
+            <h2><strong>Welcome</strong></h2>
+        </div>
+        <div class="section__subtitle">
+            An Online Library Management System, to access <strong>48000+</strong> books in the library <br><br><strong>Bankura Unnayani Institute of Engineering</strong>
+        </div>
+
+        {% if user.is_authenticated %}
+        <a href="{% url 'books' %}" class="button button--flex tutorial__explore"> Explore! <i class="uil uil-car-sideview tutorial__modal-next-icon"></i></a>
+        {% else %}
+        <div class="button tutorial__modal-next tutorial__explore">
+            Explore! <i class="uil uil-car-sideview tutorial__modal-next-icon"></i> <i class="uil uil-arrow-right tutorial__modal-next-icon"></i>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+<!-- ============================== TUTORIAL 1- TOGGLE ============================= -->
+<div class="tutorial__modal">
+    <div class="tutorial__modal-items">
+        <i class="uil uil-arrow-up-right tutorial__modal-arrow-icon"></i>
+        <div class="tutorial__modal-text">
+            <div class="section__title">
+                HI, <br>You can click on <i class="uil uil-bars tutorial__modal-icon"></i> [ top-right ] to show MENU options!
+            </div>
+        </div>
+        <div class="button button--flex tutorial__modal-next">
+            Next <i class="uil uil-arrow-right tutorial__modal-next-icon"></i>
+        </div>
+    </div>
+</div>
+
+<!-- ============================== TUTORIAL 2- BOOKS ============================= -->
+<div class="tutorial__modal">
+    <div class="tutorial__modal-items">
+        <i class="uil uil-arrow-up-right tutorial__modal-arrow-icon"></i>
+        <div class="tutorial__modal-text">
+            <div class="section__title">
+                <br>You can click on <i class="uil uil-books tutorial__modal-icon"></i>Books to see all Books in the Library!
+            </div>
+        </div>
+        <div class="button button--flex tutorial__modal-next">
+            Next <i class="uil uil-arrow-right tutorial__modal-next-icon"></i>
+        </div>
+    </div>
+</div>
+
+<!-- ============================== TUTORIAL 3- LOGIN  ============================= -->
+<div class="tutorial__modal">
+    <div class="tutorial__modal-items">
+        <i class="uil uil-arrow-up-right tutorial__modal-arrow-icon"></i>
+        <div class="tutorial__modal-text">
+            <div class="section__title">
+                Login now to Learn More...<i class="uil uil-rocket tutorial__modal-icon"></i>
+            </div>
+            <span class="section__subtitle">
+                You can use a dummy login ID and Password <br>Login ID - <strong>12345</strong> <br>Password - <strong>dummypass</strong>
+            </span>
+        </div>
+        <div class="button button--flex tutorial__modal-next">
+            Next <i class="uil uil-arrow-right tutorial__modal-next-icon"></i>
+        </div>
+    </div>
+</div>
+
+<!-- ============================== TUTORIAL 4- LIGHT/DARK MODE ============================= -->
+<div class="tutorial__modal">
+    <div class="tutorial__modal-items">
+        <i class="uil uil-arrow-up-right tutorial__modal-arrow-icon"></i>
+        <div class="tutorial__modal-text">
+            <div class="section__title">
+                HI, <br>You can tap on <i class="uil uil-moon tutorial__modal-toggle"></i> change themes!
+            </div>
+            <div class="section__subtitle">
+                  Light <i class="uil uil-sun"></i> and Dark <i class="uil uil-moon"></i> Modes are Available...
+            </div>
+        </div>
+        <div class="button button--flex tutorial__modal-next">
+            Next <i class="uil uil-arrow-right tutorial__modal-next-icon"></i>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
