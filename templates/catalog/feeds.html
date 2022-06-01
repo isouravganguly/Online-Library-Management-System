@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<!-- ===================== FEEDS ======================= -->
+
+<!-- --------------- Feed Entry ----------------- -->
+<center>
+    <form action="" method="post">
+        <div class="search__form-group">
+            <input type="text" class="search__input"  placeholder="Whats on mind today?" name="feeds" type="text"/>
+            <button type="button"  class="button--flex search-button"><i class="uil uil-mailbox search-icon"></i></button>
+            </div>
+    </form>
+</center>
+
+
+<!-- ----------------- ALL FEEDS HEREEEEE ----------------------- -->
+
+{ %if p% }
+
+    {% for post in p %}
+<div class="feed-box">
+    <div class="feed__content container">
+        <div class="feed__content-items grid">
+            <div class="feed__content-img">
+                <img src="{{p.student.pic}}" alt="author_image" class="feed__content-writer-img">
+            </div>
+            <div class="feed__content-texts grid">
+                <div class="feed__content-text_authorName">
+                    <a href="{{p.student.get_absolute_url}}" class="feed__content-text_authorName-link">{{p.student.name}}</a> 
+                </div>
+                <div class="feed__content-texts_blog">
+                    {{p.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

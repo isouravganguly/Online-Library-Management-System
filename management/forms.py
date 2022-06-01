@@ -1,3 +1,4 @@
+from importlib.abc import ExecutionLoader
 from django import forms
 
 from .models import *
@@ -23,3 +24,8 @@ class RatingForm(forms.ModelForm):
         # model = Reviews
         # exclude=['student','book']
         pass
+
+    class FeedForm(forms.ModelForm):
+        class Meta:
+            model = posts
+            exclude = ['student', 'date']

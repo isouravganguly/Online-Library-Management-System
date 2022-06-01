@@ -1,3 +1,4 @@
+from email import contentmanager
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import CharField
@@ -90,6 +91,9 @@ class Student(models.Model):
     def __str__(self):
         return str(self.roll_no)
 
+    def get_absolute_url(self):
+        return reverse('student-detail', args=[str(self.id)])
+
 
 post_save.connect(create_user, sender=Student)
 #relation containing info about Borrowed books
@@ -142,3 +146,11 @@ post_save.connect(IssueReturn, sender=Transfers)
 #     )
 
 #     rating=models.CharField(max_length=3, choices=CHOICES, default='2')
+
+class posts(models.Model):
+    student = models.ForeignKey('Student', null=True, blank=True, on_delete=models.PROTECT)
+    date = models.DateTimeField()
+    content = models.CharField(max_length= 100)
+    link = models.URLField(blank=True, null=True)
+    link_label = models.CharField(max_length=30)
+

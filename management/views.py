@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from email import message
 from django.conf import settings
 from django.shortcuts import render, redirect
@@ -12,7 +13,7 @@ from .forms import *
 
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
-from datetime import datetime
+from datetime import date, datetime
 
 # HOME PAGE
 def index(request):
@@ -31,9 +32,12 @@ def BookListView(request):
 def student_BookListView(request):
     student=Student.objects.get(roll_no=request.user)
     bor=Circulation.objects.filter(transfer__student=student)
-    book_list=[]
-    for b in bor:
-        book_list.append(b.book)
+    
+    book_list = []
+
+    for i in bor:
+        book_list.append(i.transfer.eachbook.book)
+
     # MODELNAME.objects.all() is used to get all objects i.e. tuples from database
     return render(request, 'catalog/book_list.html', locals())
 
@@ -148,6 +152,8 @@ def BookCreate(request):
         if form.is_valid():
             isbn = form.cleaned_data['isbn']
             tc= form.cleaned_data['total_copies']
+            ac= form.cleaned_data['available_copies']
+
             api = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
             # send a request and get a JSON response
             resp = urlopen(api + isbn)
@@ -169,11 +175,12 @@ def BookCreate(request):
 
             try:
                 authors = volume_info["authors"]
+                author=''
                 # practice with conditional expressions!
                 for i in authors:
                     author = author + str(i) + ','
             except:
-                author=NULL
+                author=''
 
             try:
                 small_pic = volume_info['imageLinks']['smallThumbnail']
@@ -187,7 +194,7 @@ def BookCreate(request):
 
 
             if volume_info is not NULL:
-                b=Book.objects.create(title = title ,author=author, isbn=isbn, small_pic = small_pic, large_pic=large_pic, total_copies=tc)
+                b=Book.objects.create(title = title ,author=author, isbn=isbn, small_pic = small_pic, large_pic=large_pic, total_copies=tc, available_copies=ac)
 
                 print(f"\nTitle: {volume_info['title']}")
                 print(f"Author: {author}")
@@ -391,6 +398,26 @@ def ret(request):
 
     return render(request, 'catalog/issue.html', {'form': form})
 
+@login_required
+def feed(request):
+    form = FeedForm()
+    if request.method == 'POST':
+        form = StudentForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            student = request.user
+            content = form.cleaned_data['content']
+            date = datetime.utcnow()
+            link = form.cleaned_data['link']
+            link_label = form.cleaned_data['link_label']
+            p = posts.objects.create(student=student, content=content, date=date, link=link, link_label=link_label)
+            p.save()
+            return redirect(index)
+    else:
+
+        feeds = posts.objects.order_by(-date)[:30]
+        return render(request, 'catalog/feeds.html', locals())
+
+
 
 import re
 
@@ -451,6 +478,7 @@ def search_student(request):
         students= Student.objects.filter(entry_query)
 
     return render(request,'catalog/student_list.html',locals())
+
 
 
 
